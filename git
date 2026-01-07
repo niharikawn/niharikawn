@@ -1,0 +1,150 @@
+# ================================
+# STEP 0: (ONLY ON NEW SYSTEM)
+# Configure user identity for commits
+# ================================
+
+git config user.name "Your Name"
+# Sets the author name for commits
+
+git config user.email "your@email.com"
+# Sets the author email for commits
+
+# ================================
+# STEP 1: CREATE PROJECT DIRECTORY
+# ================================
+
+mkdir git-sessional
+# Creates a new project folder
+
+cd git-sessional
+# Moves into the project folder
+
+# ================================
+# STEP 2: INITIALIZE GIT REPOSITORY
+# ================================
+
+git init
+# Initializes an empty Git repository (.git folder created)
+
+# ================================
+# STEP 3: CHECK REPOSITORY STATUS
+# ================================
+
+git status
+# Shows current branch, tracked/untracked files, staging state
+
+# ================================
+# STEP 4: CREATE / EDIT FILES
+# ================================
+
+nano exam.txt
+# Creates or edits a file (any editor is acceptable)
+
+# ================================
+# STEP 5: CHECK STATUS AFTER CHANGES
+# ================================
+
+git status
+# Shows exam.txt as untracked or modified
+
+# ================================
+# STEP 6: STAGE FILES
+# ================================
+
+git add exam.txt
+# Adds exam.txt to staging area
+
+# OR (stage all files)
+git add .
+# Stages all modified/untracked files
+
+# ================================
+# STEP 7: COMMIT CHANGES
+# ================================
+
+git commit -m "Initial commit"
+# Saves staged changes as a snapshot in Git history
+
+# ================================
+# STEP 8: VIEW COMMIT HISTORY
+# ================================
+
+git log
+# Shows full commit history
+
+git log --oneline
+# Shows condensed commit history (exam-friendly)
+
+# ================================
+# STEP 9: CREATE A NEW BRANCH
+# ================================
+
+git branch feature-update
+# Creates a new branch
+
+git checkout feature-update
+# Switches to the new branch
+
+# OR (create + switch in one command)
+git checkout -b feature-update
+
+# ================================
+# STEP 10: VERIFY CURRENT BRANCH
+# ================================
+
+git branch
+# Shows all branches (* indicates current branch)
+
+# ================================
+# STEP 11: MAKE CHANGES IN BRANCH
+# ================================
+
+nano exam.txt
+# Edit file in feature branch
+
+git add exam.txt
+# Stage changes
+
+git commit -m "Updated notes in feature branch"
+# Commit changes in feature branch
+
+# ================================
+# STEP 12: VIEW BRANCH HISTORY
+# ================================
+
+git log --oneline --decorate --all
+# Shows commits across all branches with branch names
+
+# ================================
+# STEP 13: ADD REMOTE REPOSITORY (GITHUB)
+# ================================
+
+git remote add origin https://github.com/username/repo.git
+# Links local repository to GitHub repository
+
+git remote -v
+# Verifies remote URLs
+
+# ================================
+# STEP 14: PUSH CHANGES TO GITHUB
+# ================================
+
+git push -u origin master
+# Pushes master branch to GitHub and sets upstream
+
+# OR push another branch
+git push -u origin feature-update
+
+# ================================
+# STEP 15: PULL CHANGES FROM GITHUB
+# ================================
+
+git pull origin master
+# Fetches and merges changes from GitHub to local repo
+
+# ================================
+# STEP 16: CHECK FINAL STATUS
+# ================================
+
+git status
+# Confirms working tree is clean
