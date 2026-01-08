@@ -156,6 +156,10 @@ nano student_name.txt
 git status
 git add student_name.txt
 git commit -m "Added full name to student_name file"
+
+git config --global user.name "Neha Sharma"
+git config --global user.email "neha@gmail.com"
+
 git push origin main
 
 
