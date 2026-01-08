@@ -148,3 +148,47 @@ git pull origin master
 
 git status
 # Confirms working tree is clean
+
+
+git clone https://github.com/your_username/exam.git
+cd exam
+nano student_name.txt
+git status
+git add student_name.txt
+git commit -m "Added full name to student_name file"
+git push origin main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
