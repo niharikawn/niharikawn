@@ -176,6 +176,7 @@ git commit -m "Added full name to student_name file"
 git push origin main
 
 
+git config --global --unset credential.helper
 
 
 
