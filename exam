@@ -1,1 +1,89 @@
+library(edgeR)
+library(clusterProfiler)
+library(org.Hs.eg.db) 
+library(ggplot2)
+setwd("C:/Users/STUDENT/Downloads")
+dir()
+raw_counts <- read.table("counts.txt", header=TRUE, row.names=1, sep="\t")
+group <- c("Control", "Control", "Control", "Treat", "Treat", "Treat")
+group <- factor(c(rep("Control", 3), rep("Treat", 3)))
+library(edgeR)
+counts <- read.csv("counts.txt", row.names = 1)
+group <- factor(c("Control","Control","Treatment","Treatment"))
+design <- model.matrix(~group)
+dge <- DGEList(counts = counts, group = group)
+class(counts)
+dim(counts)
+head(counts)
+str(counts)
+counts <- read.delim("counts.txt", header = TRUE)
+rownames(counts) <- counts$gene_symbol
+counts <- counts[, -1]   
+counts <- as.matrix(counts)
+mode(counts) <- "numeric"
+class(counts)
+dim(counts)
+head(counts)
+colnames(counts)
+group <- factor(c("Test","Test","Test","Control","Control","Control"))
+library(edgeR)
+dge <- DGEList(counts = counts, group = group)
+keep <- filterByExpr(dge)
+dge <- dge[keep, , keep.lib.sizes = FALSE]
+dge <- calcNormFactors(dge)
+design <- model.matrix(~group)
+dge <- estimateDisp(dge, design)
+fit <- glmQLFit(dge, design)
+qlf <- glmQLFTest(fit, coef = 2)
+res <- topTags(qlf, n = Inf)$table
+deg <- res[res$FDR <= 0.05 & abs(res$logFC) >= 2, ]
+nrow(deg)
+dge
+dim(dge)
+dge$samples
+dge$common.dispersion
+head(res)
+nrow(deg)
+library(clusterProfiler)
+library(org.Hs.eg.db)
+library(ggplot2)
+genes <- rownames(deg)
+entrez <- bitr(
+  genes,
+  fromType = "SYMBOL",
+  toType = "ENTREZID",
+  OrgDb = org.Hs.eg.db
+)
+head(entrez)
+kegg <- enrichKEGG(
+  gene = entrez$ENTREZID,
+  organism = "hsa",
+  pvalueCutoff = 0.05
+)
+head(kegg, 5)
+barplot(kegg, showCategory = 5)
+ggsave("kegg_barplot.png")
+
+
+Answer: a)> nrow(deg)
+[1] 3390
+
+b)kegg barplot
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________
+library(ggplot2)
+data <- data.frame(
+  Weight = c(55, 50, 48, 60, 70, 65),
+  Height = c(160, 155, 150, 170, 180, 175),
+  Gender = c("Female", "Female", "Female", "Male", "Male", "Male")
+)
+ggplot(data, aes(x = Weight, y = Height, color = Gender)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Relationship between Weight and Height",
+    x = "Weight (kg)",
+    y = "Height (cm)"
+  ) +
+  theme_minimal()
+
 
