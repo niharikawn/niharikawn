@@ -162,13 +162,18 @@ git config --global user.email "neha@gmail.com"
 
 git push origin main
 
+git remote -v
+origin  https://github.com/YOUR_USERNAME/exam.git (fetch)
+origin  https://github.com/YOUR_USERNAME/exam.git (push)
+
+git remote set-url origin https://github.com/YOUR_USERNAME/exam.git
 
 
+git status
+git add student_name.txt
+git commit -m "Added full name to student_name file"
 
-
-
-
-
+git push origin main
 
 
 
